@@ -2,7 +2,7 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.base.config');
 
 module.exports = merge(baseConfig, {
@@ -46,9 +46,8 @@ module.exports = merge(baseConfig, {
     },
 
     devServer: {
-        contentBase: path.join(__dirname, './example'),
+        port: 9000,
         compress: true,
-        port: 9000
     },
 
     devtool: 'eval-source-map',

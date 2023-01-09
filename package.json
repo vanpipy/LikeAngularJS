@@ -4,9 +4,9 @@
     "description": "LikeAngularJS",
     "main": "none",
     "scripts": {
-        "start:dev": "webpack-dev-server --config ./webpack.dev.config.js",
+        "start:dev": "webpack serve -c ./webpack.dev.config.js",
         "test": "test",
-        "build": "webpack --config ./webpack.prod.config.js"
+        "build": "webpack -c ./webpack.prod.config.js"
     },
     "repository": {
         "type": "git",
@@ -36,7 +36,7 @@
         "html-webpack-plugin": "^5.5.0",
         "webpack": "^5.75.0",
         "webpack-cli": "^5.0.1",
-        "webpack-dev-server": "^3.10.3",
-        "webpack-merge": "^4.2.2"
+        "webpack-dev-server": "^4.11.1",
+        "webpack-merge": "^5.8.0"
     }
 }
