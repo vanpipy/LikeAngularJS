@@ -1,26 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="like">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>LikeAngularJS</title>
 </head>
 <body>
 
-    <div id="main" main-role ng-controller="mainController" ng-click="test($event, sayHi, exampleWord)">
-        {{ exampleWord }} {{ sayHi }}
-        <input type="text" ng-model="whoareyou" >
-        <p>{{ whoareyou }}</p>
+    <div id="app" ng-controller="mainController" ng-click="test()">
+        <span ng-bind="A"></span>
         <mark-up>try to mark up</mark-up>
     </div>
 
-    <!--
-       -<script type="text/javascript" src="../lib/compose-parallel.js"></script>
-       -<script type="text/javascript" src="../src/lite.js"></script>
-       -<script type="text/javascript" src="../src/scope.js"></script>
-       -<script type="text/javascript" src="../src/provider.js"></script>
-       -<script type="text/javascript" src="../src/compiler.js"></script>
-       -<script type="text/javascript" src="../src/directive.js"></script>
-       -<script type="text/javascript" src="../src/like.js"></script>
-       -->
 </body>
 </html>
