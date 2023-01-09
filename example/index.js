@@ -1,38 +1,17 @@
 'use strict';
 
-/*
- *provider.add('directive', 'mainRole', function () {
- *    return {
- *        restrict: 'A',
- *        link: function (scope, attr, element) {
- *
- *        }
- *    }
- *});
- *
- *provider.add('directive', 'markUp', function () {
- *    return {
- *        restrict: 'E',
- *        template: '<h1>Hello!</h1>',
- *        link: function (scope, attr, element) {
- *
- *        }
- *    }
- *});
- *
- *var $scope = new scope();
- *$scope.exampleWord = 'I am example word.';
- *$scope.sayHi = 'Hi, everyone.';
- *$scope.whoareyou = 'My name is vanpipy';
- *$scope.test = function (e, a, b) {
- *    console.log(e, a, b);
- *};
- *
- *compiler.compile(document.getElementById('main'))($scope);
- */
+const angular = window.angular;
 
-Like.controller('mainController', ['$rootScope', function($rootScope) {
-    console.log('hello world', $rootScope)
-}]);
+const root = document.getElementById('app');
 
-Like.bootstrap(document.getElementById('main'));
+console.log(angular);
+
+angular.controller('mainController', ($scope) => {
+    $scope.A = 0;
+
+    $scope.test = () => {
+        $scope.A += 1;
+    }
+})
+
+angular.bootstrap(root);

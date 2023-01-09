@@ -1,56 +1,61 @@
 'use strict';
 
-import Like from './Like';
-import Provider from './Provider';
-import Injector from './Injector';
-import Compiler from './Compiler';
-import Scope from './Scope';
+import Provider from './provider';
+import Compiler from './compiler';
+import Scope from './scope';
 
-
-const services = [];
-const directives = [];
-const controllers = [];
-
-const service = new Provider(services, 'provider');
-const directive = new Provider(directives, 'directive');
-const controller = new Provider(controllers, 'controller');
-
-const injector = new Injector(service);
+const $provider = new Provider();
+const $compiler = new Compiler();
 const $rootScope = new Scope();
 
-const compiler = new Compiler({ service, directive, controller });
+$provider.register('$rootScope', $rootScope);
 
-Like.inject = function(params) {
-    return injector.invoke(params);
-}
-
-Like.service = function(name, fn) {
-    service.set(name, fn);
-}
-
-Like.directive = function(name, fn) {
-    directive.set(name, fn);
-}
-
-Like.controller = function(name, handler) {
-    controller.set(name, handler);
-}
-
-Like.service('$rootScope', $rootScope);
-
-Like.directive('ngController', function() {
+$provider.directive('ng-bind', () => {
     return {
-        restrict: 'A',
-        link: function(scope, attr) {
-            const control = controller.get(attr['ng-controller'].value);
-            injector.invoke(control);
-        }
-    };
-});
+        scope: false,
+        link: (element, scope, attrs) => {
+            const key = attrs['ng-bind'];
+            element.innerHTML = scope.$eval(key);
+            scope.$watch(key, (newValue) => {
+                element.innerHTML = newValue;
+            });
+        },
+    }
+})
 
-Like.bootstrap = function(root) {
-    compiler.compile(root)($rootScope);
+$provider.directive('ng-controller', () => {
+    return {
+        scope: true,
+        link: (_element, scope, attrs) => {
+            const key = attrs['ng-controller'];
+            const controller = $provider.get(key);
+            $provider.invoke(controller, { '$scope': scope });
+        }
+    }
+})
+
+$provider.directive('ng-click', () => {
+    return {
+        scope: false,
+        link: (element, scope, attrs) => {
+            const expression = attrs['ng-click'];
+
+            element.onclick = () => {
+                scope.$eval(expression);
+                scope.$digest();
+            }
+        }
+    }
+})
+
+$compiler.setProvider($provider);
+
+const angular = {
+    bootstrap: (root) => {
+        $compiler.compile(root, $rootScope);
+    },
+    directive: $provider.directive.bind($provider),
+    controller: $provider.controller.bind($provider),
 };
 
-global.Like = Like;
-global.compiler = compiler;
+global.angular = angular;
