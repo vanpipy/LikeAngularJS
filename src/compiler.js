@@ -1,4 +1,4 @@
-import {createAttrsObj, getAttrs, getChildren} from "./domkit";
+import LiteNode from "./domkit";
 
 class Compiler {
     bootstrap(root, rootScope) {
@@ -6,9 +6,10 @@ class Compiler {
     }
 
     compile(dom, scope) {
-        const attrs = getAttrs(dom);
-        const attrsMapping = createAttrsObj(attrs);
-        const children = getChildren(dom);
+        const node = new LiteNode(dom);
+        const attrs = node.attrs({ fmt: 'array' });
+        const attrsMapping = node.attrs();
+        const children = node.getChildren();
         let currentScope = scope;
         let scopeHasOverwrited = false;
         let i = 0;
