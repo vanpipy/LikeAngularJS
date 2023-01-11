@@ -22,9 +22,6 @@
         "url": "https://github.com/vanpipy/LikeAngularJS/issues"
     },
     "homepage": "https://github.com/vanpipy/LikeAngularJS#readme",
-    "dependencies": {
-        "compose-parallel": "^1.0.2"
-    },
     "devDependencies": {
         "@babel/core": "^7.9.6",
         "@babel/plugin-transform-runtime": "^7.9.6",
