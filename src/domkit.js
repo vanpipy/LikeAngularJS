@@ -1,18 +1,36 @@
-export const getAttrs = (dom) => {
-    const attrs = Array.prototype.slice.call(dom.attributes);
-    return attrs.map((attr) => ({
-        name: attr.name,
-        value: attr.value,
-    }));
-};
+import {createMapping, createOptions, slice} from "./utils";
 
-export const createAttrsObj = (attrsArr = [], k = 'name', v = 'value') => {
-    return attrsArr.reduce((result, attr) => {
-        result[attr[k]] = attr[v];
-        return result;
-    }, {});
-};
+class LiteNode {
+    constructor(dom) {
+        this.__$$dom = dom || {
+            attributes: [],
+            children: [],
+        };
+        this.__$$children = [];
+        this.collectAttrs();
+    }
 
-export const getChildren = (dom) => {
-    return Array.prototype.slice.call(dom.children);
-};
+    collectAttrs() {
+        this.__$$attrsArray = createOptions(this.__$$dom.attributes);
+        this.__$$attrsMapping = createMapping(this.__$$attrsArray);
+    }
+
+    attr(key) {
+        return this.__$$attrsMapping[key];
+    }
+
+    attrs(opts = {}) {
+        return opts.fmt === 'array' ? this.__$$attrsArray : this.__$$attrsMapping;
+    }
+
+    getDom() {
+        return this.__$$dom;
+    }
+
+    getChildren() {
+        this.__$$children = slice(this.__$$dom.children);
+        return this.__$$children;
+    }
+}
+
+export default LiteNode;

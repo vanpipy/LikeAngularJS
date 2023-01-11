@@ -26,3 +26,19 @@ export const getFunctionParams = (fn) => {
         : '';
     return expectedParams.split(',').map(trim)
 };
+
+export const slice = (arr) => Array.prototype.slice.call(arr);
+
+export const createOptions = (arr = [], k = 'name', v = 'value') => {
+    return slice(arr).map((each) => ({
+        name: each[k],
+        value: each[v],
+    }));
+};
+
+export const createMapping = (arr = [], k = 'name', v = 'value') => {
+    return arr.reduce((result, each) => {
+        result[each[k]] = each[v];
+        return result;
+    }, {});
+};
