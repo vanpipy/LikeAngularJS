@@ -21,8 +21,8 @@ Just like AngularJS.
                               v                                |
                         --------------                     ---------         ---------
                      /  |    HTML    |     DATA-BINDING    | View  |  ---->  |       |
-Template[View]  <----   --------------   <-------------->  |   |   |         | Model |
-                     \  | JAVASCRIPT |                     | Model |  <----  |       |
+Template[View]  <----   -------------- ------------------- |       |         | Model |
+                     \  | EXPRESSION |                     | Model |  <----  |       |
                         --------------                     ---------         ---------
                               |                                ^
                               |                                |
