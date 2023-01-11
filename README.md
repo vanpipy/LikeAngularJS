@@ -42,15 +42,16 @@ A:Javascript
 The questions tell something about how to struct the `MV*` model. HTML is main content for the view and Javascript is the main way for the model and the controller.
 
 # What is the content of the LikeAngualrJS?
-1.Compiler
-2.Injector
-3.Provider
-4.Controller
-5.Service
-6.Scope
-7.Directive
-8.LiteNode
-9.Like
+* Compiler
+* Provider
+* Injector
+* Scope
+* Templization
+* Controller
+* Service
+* Directive
+* LiteNode
+* Utils
 
 # Practice
 [Simplified AngularJS](http://blog.mgechev.com/2015/03/09/build-learn-your-own-light-lightweight-angularjs/)
