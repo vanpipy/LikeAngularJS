@@ -32,13 +32,6 @@ Template[View]  <----   -------------- ------------------- |       |         | M
 The data-binding replace of the MVC's update and manipulate in MVVM.
 ```
 
-# LikeAngularJS Structure
-
-Q:What is the content of the web page?
-A:HTML
-Q:How to manipulate the web page content?
-A:Javascript
-
 The questions tell something about how to struct the `MV*` model. HTML is main content for the view and Javascript is the main way for the model and the controller.
 
 # What is the content of the LikeAngualrJS?
