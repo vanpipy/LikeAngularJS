@@ -1,4 +1,4 @@
-import LiteNode from "./domkit";
+import LiteNode from './domkit';
 
 class Compiler {
     bootstrap(root, rootScope) {
@@ -54,4 +54,4 @@ class Compiler {
     }
 }
 
-export default Compiler
+export default Compiler;
