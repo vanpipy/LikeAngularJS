@@ -1,4 +1,4 @@
-import {createMapping, createOptions, slice} from "./utils";
+import { createMapping, createOptions, slice } from './utils';
 
 class LiteNode {
     constructor(dom) {

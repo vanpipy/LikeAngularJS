@@ -19,7 +19,7 @@ class Scope {
             exp,
             fn,
             last: this.$eval(exp),
-        })
+        });
     }
 
     $digest() {
@@ -30,7 +30,7 @@ class Scope {
             dirty = false;
             while (i < this.$$watchers.length) {
                 const watcher = this.$$watchers[i];
-                const last = watcher.last;
+                const { last } = watcher;
                 const current = this.$eval(watcher.exp);
 
                 if (last !== current) {
@@ -63,13 +63,15 @@ class Scope {
         try {
             if (typeof exp === 'function') {
                 return exp.call(this);
-            } else {
-                const executor = new Function(`return this.${exp}`);
-                return executor.call(this);
             }
+            /* eslint-disable no-new-func */
+            const executor = new Function(`return this.${exp}`);
+            return executor.call(this);
         } catch (err) {
             console.error(err);
         }
+
+        return null;
     }
 
     $destroy() {
@@ -90,4 +92,4 @@ class Scope {
 
 Scope.__id = 0;
 
-export default Scope
+export default Scope;

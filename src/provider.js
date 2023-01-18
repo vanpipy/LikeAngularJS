@@ -1,4 +1,4 @@
-import {getFunctionParams} from "./utils";
+import { getFunctionParams } from './utils';
 
 class Provider {
     constructor() {
@@ -16,24 +16,23 @@ class Provider {
 
             if (dep) {
                 return dep;
-            } else {
-                throw new Error(`Cannot find the ${name}`);
             }
+            throw new Error(`Cannot find the ${name}`);
         });
         return executors;
     }
 
     invoke(fn, deps) {
         const executors = this.annotate(fn, deps);
-        return fn.apply(null, executors);
+        return fn(...executors);
     }
 
     directive(name, fn) {
-        this.register(name, fn)
+        this.register(name, fn);
     }
 
     controller(name, fn) {
-        this.register(name, fn)
+        this.register(name, fn);
     }
 
     service(name, fn) {
@@ -45,4 +44,4 @@ class Provider {
     }
 }
 
-export default Provider
+export default Provider;
